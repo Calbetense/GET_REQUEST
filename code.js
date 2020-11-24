@@ -25,7 +25,7 @@ function doGet(e){
   // Day of the sample
   var d = new Date();
   
-  //Get place
+  //Get parameters
   var p = "B1"/*e.parameter["place"]*/;
   
   // Get hour
@@ -54,15 +54,16 @@ function doGet(e){
       //Compare place
       if(places[i] === p){
         for(j in headers){
-          if(headers[j] === "O2 (mg/L)"){                       //O2
+          if(e.parameter["o2"] && headers[j] === "O2 (mg/L)"){                       //O2
             if(c1 === h){
-              cell.offset(i, j).setValue(e.parameter["o2"]);     
+              cell.offset(i, j).setValue(e.parameter["o2"]);  
+              break;
             }else{
              c1++; 
             }
-          }else if(headers[j] === "TEMP (°C)"){                  //TEMP
+          }else if(e.parameter["temp"] && headers[j] === "TEMP (°C)"){                  //TEMP
             if(c2 === h){
-               cell.offset(i, j).setValue(e.parameter["temp"]);    
+               cell.offset(i, j).setValue(e.parameter["temp"]);  
                break;
             }else{
                c2++;
