@@ -41,11 +41,12 @@ function doGet(e){
   }else if(d.getHours() > 1 && d.getHours() <= 4){
     h = 5;
   }
-  
-  
+   
   //Counter
   c1 = 0;
   c2 = 0;
+  c3 = 0;
+  c4 = 0;
   
   // Write function (JUST O2 AND TEMP)
   for(i = 0; i < days.length; i++){
@@ -57,16 +58,30 @@ function doGet(e){
           if(e.parameter["o2"] && headers[j] === "O2 (mg/L)"){                       //O2
             if(c1 === h){
               cell.offset(i, j).setValue(e.parameter["o2"]);  
-              break;
+              return ContentService.createTextOutput('Success :) O2 = ' + e.parameter["o2"]);
             }else{
              c1++; 
             }
           }else if(e.parameter["temp"] && headers[j] === "TEMP (°C)"){                  //TEMP
             if(c2 === h){
                cell.offset(i, j).setValue(e.parameter["temp"]);  
-               break;
+               return ContentService.createTextOutput('Success :) Temp = ' + e.parameter["temp"]);
             }else{
                c2++;
+            }
+          }else if(e.parameter["cont"] && headers[j] === "Cont (ppm)"){                  //CONT
+            if(c3 === h){
+               cell.offset(i, j).setValue(e.parameter["cont"]);  
+               return ContentService.createTextOutput('Success :) Cont = ' + e.parameter["cont"]);
+            }else{
+               c3++;
+            }
+          }else if(e.parameter["orp"] && headers[j] === "ORP (mV)"){                  //ORP TODOOOOOOOOOOOOOO!!!!
+            if(c4 === h){
+               cell.offset(i, j).setValue(e.parameter["orp"]);  
+               return ContentService.createTextOutput('Success :) ORP = ' + e.parameter["orp"]);
+            }else{
+               c4++;
             }
           }
         }
@@ -74,6 +89,6 @@ function doGet(e){
     } 
   }
  
-  return ContentService.createTextOutput('Success :)');
+  return ContentService.createTextOutput('Something went wrong');
   
 }
