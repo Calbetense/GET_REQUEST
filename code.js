@@ -42,6 +42,10 @@ function doGet(e){
     h = 5;
   }
    
+// TO ADD A PARAMETER JUST NEED TO COPY-PASTE THE ELSE-IF PART 
+// ADD A Cn (n BEING NEXT NUMBER) AND CHANGE ALL THE NAMES OF
+// THE PARAMETER TO THE CORRESPONDENT ONE
+
   //Counter
   c1 = 0;
   c2 = 0;
@@ -55,7 +59,7 @@ function doGet(e){
       //Compare place
       if(places[i] === p){
         for(j in headers){
-          if(e.parameter["o2"] && headers[j] === "O2 (mg/L)"){                       //O2
+          if(e.parameter["o2"] && headers[j] === "O2 (%)"){                       //O2
             if(c1 === h){
               cell.offset(i, j).setValue(e.parameter["o2"]);  
               return ContentService.createTextOutput('Success :) O2 = ' + e.parameter["o2"]);
@@ -76,7 +80,7 @@ function doGet(e){
             }else{
                c3++;
             }
-          }else if(e.parameter["orp"] && headers[j] === "ORP (mV)"){                  //ORP TODOOOOOOOOOOOOOO!!!!
+          }else if(e.parameter["orp"] && headers[j] === "ORP (mV)"){                  
             if(c4 === h){
                cell.offset(i, j).setValue(e.parameter["orp"]);  
                return ContentService.createTextOutput('Success :) ORP = ' + e.parameter["orp"]);
